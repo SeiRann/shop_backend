@@ -27,13 +27,13 @@ export class ClientService {
     return clients
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     const client = await this.prisma.client.findUnique({where:{client_id:id}})
 
     return client
   }
 
-  async update(id: number, updateClientDto: UpdateClientDto) {
+  async update(id: string, updateClientDto: UpdateClientDto) {
     await this.prisma.client.update({
       where:{
         client_id: id,
@@ -50,7 +50,7 @@ export class ClientService {
     return `Updated ${updateClientDto.username} user information`
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     await this.prisma.client.delete({where:{client_id:id}})
 
     return `Client deleted`

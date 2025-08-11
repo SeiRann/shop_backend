@@ -28,13 +28,13 @@ export class ReviewService {
     return reviews
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     const review = await this.prisma.review.findUnique({where:{review_id:id}})
 
     return review;
   }
 
-  async update(id: number, updateReviewDto: UpdateReviewDto) {
+  async update(id: string, updateReviewDto: UpdateReviewDto) {
     await this.prisma.review.update({
       where:{
         review_id:id
@@ -43,15 +43,13 @@ export class ReviewService {
         review_title:updateReviewDto.review_title,
         review_score:updateReviewDto.review_score,
         review_text:updateReviewDto.review_text,
-        product_id:updateReviewDto.product_id,
-        author_id:updateReviewDto.author_id,
       }
     })
 
     return `Review has been updated`
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     await this.prisma.review.delete({where:{review_id:id}})
     
     return `This action removes a #${id} review`;

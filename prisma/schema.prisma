@@ -10,7 +10,7 @@ datasource db {
 }
 
 model Client {
-  client_id    String   @id @default(uuid()) @db.Uuid
+  client_id    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   username     String
   passwordHash String
   email        String   @unique
@@ -20,7 +20,7 @@ model Client {
 }
 
 model Products {
-  product_id  String   @id @default(uuid()) @db.Uuid
+  product_id  String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   image       String
   description String
   title       String
@@ -30,7 +30,7 @@ model Products {
 }
 
 model Review {
-  review_id    String   @id @default(uuid()) @db.Uuid
+  review_id    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   author_id    String   @db.Uuid
   product_id   String   @db.Uuid
   review_text  String

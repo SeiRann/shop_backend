@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Client {
+  client_id    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username     String
+  passwordHash String
+  email        String   @unique
+  phone_number Int
+  address      String   @unique
+  Review       Review[]
+}
+
+model Products {
+  product_id  String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  image       String
+  description String
+  title       String
+  stock       Int
+  sizes       String[]
+  review      Review[]
+}
+
+model Review {
+  review_id    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  author_id    String   @db.Uuid
+  product_id   String   @db.Uuid
+  review_text  String
+  review_score Int
+  review_title String
+  author       Client   @relation(fields: [author_id], references: [client_id])
+  product      Products @relation(fields: [product_id], references: [product_id])
+}
