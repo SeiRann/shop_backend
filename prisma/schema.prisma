@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Client {
+  client_id    BigInt   @id @default(autoincrement())
+  username     String
+  passwordHash String
+  email        String   @unique
+  phone_number Int
+  address      String   @unique
+  Review       Review[]
+}
+
+model Products {
+  product_id  BigInt   @id @default(autoincrement())
+  image       String
+  description String
+  title       String
+  stock       Int
+  sizes       String[]
+  review      Review[]
+}
+
+model Review {
+  review_id    BigInt   @id @default(autoincrement())
+  author_id    BigInt
+  product_id   BigInt
+  review_text  String
+  review_score Int
+  review_title String
+  author       Client   @relation(fields: [author_id], references: [client_id])
+  product      Products @relation(fields: [product_id], references: [product_id])
+}
