@@ -1138,17 +1138,15 @@ export namespace Prisma {
   }
 
   export type ClientAvgAggregateOutputType = {
-    client_id: number | null
     phone_number: number | null
   }
 
   export type ClientSumAggregateOutputType = {
-    client_id: bigint | null
     phone_number: number | null
   }
 
   export type ClientMinAggregateOutputType = {
-    client_id: bigint | null
+    client_id: string | null
     username: string | null
     passwordHash: string | null
     email: string | null
@@ -1157,7 +1155,7 @@ export namespace Prisma {
   }
 
   export type ClientMaxAggregateOutputType = {
-    client_id: bigint | null
+    client_id: string | null
     username: string | null
     passwordHash: string | null
     email: string | null
@@ -1177,12 +1175,10 @@ export namespace Prisma {
 
 
   export type ClientAvgAggregateInputType = {
-    client_id?: true
     phone_number?: true
   }
 
   export type ClientSumAggregateInputType = {
-    client_id?: true
     phone_number?: true
   }
 
@@ -1301,7 +1297,7 @@ export namespace Prisma {
   }
 
   export type ClientGroupByOutputType = {
-    client_id: bigint
+    client_id: string
     username: string
     passwordHash: string
     email: string
@@ -1380,7 +1376,7 @@ export namespace Prisma {
       Review: Prisma.$ReviewPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      client_id: bigint
+      client_id: string
       username: string
       passwordHash: string
       email: string
@@ -1810,7 +1806,7 @@ export namespace Prisma {
    * Fields of the Client model
    */
   interface ClientFieldRefs {
-    readonly client_id: FieldRef<"Client", 'BigInt'>
+    readonly client_id: FieldRef<"Client", 'String'>
     readonly username: FieldRef<"Client", 'String'>
     readonly passwordHash: FieldRef<"Client", 'String'>
     readonly email: FieldRef<"Client", 'String'>
@@ -2259,17 +2255,15 @@ export namespace Prisma {
   }
 
   export type ProductsAvgAggregateOutputType = {
-    product_id: number | null
     stock: number | null
   }
 
   export type ProductsSumAggregateOutputType = {
-    product_id: bigint | null
     stock: number | null
   }
 
   export type ProductsMinAggregateOutputType = {
-    product_id: bigint | null
+    product_id: string | null
     image: string | null
     description: string | null
     title: string | null
@@ -2277,7 +2271,7 @@ export namespace Prisma {
   }
 
   export type ProductsMaxAggregateOutputType = {
-    product_id: bigint | null
+    product_id: string | null
     image: string | null
     description: string | null
     title: string | null
@@ -2296,12 +2290,10 @@ export namespace Prisma {
 
 
   export type ProductsAvgAggregateInputType = {
-    product_id?: true
     stock?: true
   }
 
   export type ProductsSumAggregateInputType = {
-    product_id?: true
     stock?: true
   }
 
@@ -2418,7 +2410,7 @@ export namespace Prisma {
   }
 
   export type ProductsGroupByOutputType = {
-    product_id: bigint
+    product_id: string
     image: string
     description: string
     title: string
@@ -2497,7 +2489,7 @@ export namespace Prisma {
       review: Prisma.$ReviewPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      product_id: bigint
+      product_id: string
       image: string
       description: string
       title: string
@@ -2927,7 +2919,7 @@ export namespace Prisma {
    * Fields of the Products model
    */
   interface ProductsFieldRefs {
-    readonly product_id: FieldRef<"Products", 'BigInt'>
+    readonly product_id: FieldRef<"Products", 'String'>
     readonly image: FieldRef<"Products", 'String'>
     readonly description: FieldRef<"Products", 'String'>
     readonly title: FieldRef<"Products", 'String'>
@@ -3376,32 +3368,26 @@ export namespace Prisma {
   }
 
   export type ReviewAvgAggregateOutputType = {
-    review_id: number | null
-    author_id: number | null
-    product_id: number | null
     review_score: number | null
   }
 
   export type ReviewSumAggregateOutputType = {
-    review_id: bigint | null
-    author_id: bigint | null
-    product_id: bigint | null
     review_score: number | null
   }
 
   export type ReviewMinAggregateOutputType = {
-    review_id: bigint | null
-    author_id: bigint | null
-    product_id: bigint | null
+    review_id: string | null
+    author_id: string | null
+    product_id: string | null
     review_text: string | null
     review_score: number | null
     review_title: string | null
   }
 
   export type ReviewMaxAggregateOutputType = {
-    review_id: bigint | null
-    author_id: bigint | null
-    product_id: bigint | null
+    review_id: string | null
+    author_id: string | null
+    product_id: string | null
     review_text: string | null
     review_score: number | null
     review_title: string | null
@@ -3419,16 +3405,10 @@ export namespace Prisma {
 
 
   export type ReviewAvgAggregateInputType = {
-    review_id?: true
-    author_id?: true
-    product_id?: true
     review_score?: true
   }
 
   export type ReviewSumAggregateInputType = {
-    review_id?: true
-    author_id?: true
-    product_id?: true
     review_score?: true
   }
 
@@ -3547,9 +3527,9 @@ export namespace Prisma {
   }
 
   export type ReviewGroupByOutputType = {
-    review_id: bigint
-    author_id: bigint
-    product_id: bigint
+    review_id: string
+    author_id: string
+    product_id: string
     review_text: string
     review_score: number
     review_title: string
@@ -3637,9 +3617,9 @@ export namespace Prisma {
       product: Prisma.$ProductsPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      review_id: bigint
-      author_id: bigint
-      product_id: bigint
+      review_id: string
+      author_id: string
+      product_id: string
       review_text: string
       review_score: number
       review_title: string
@@ -4068,9 +4048,9 @@ export namespace Prisma {
    * Fields of the Review model
    */
   interface ReviewFieldRefs {
-    readonly review_id: FieldRef<"Review", 'BigInt'>
-    readonly author_id: FieldRef<"Review", 'BigInt'>
-    readonly product_id: FieldRef<"Review", 'BigInt'>
+    readonly review_id: FieldRef<"Review", 'String'>
+    readonly author_id: FieldRef<"Review", 'String'>
+    readonly product_id: FieldRef<"Review", 'String'>
     readonly review_text: FieldRef<"Review", 'String'>
     readonly review_score: FieldRef<"Review", 'Int'>
     readonly review_title: FieldRef<"Review", 'String'>
@@ -4560,20 +4540,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'BigInt'
-   */
-  export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
-    
-
-
-  /**
-   * Reference to a field of type 'BigInt[]'
-   */
-  export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
-    
-
-
-  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
@@ -4622,7 +4588,7 @@ export namespace Prisma {
     AND?: ClientWhereInput | ClientWhereInput[]
     OR?: ClientWhereInput[]
     NOT?: ClientWhereInput | ClientWhereInput[]
-    client_id?: BigIntFilter<"Client"> | bigint | number
+    client_id?: UuidFilter<"Client"> | string
     username?: StringFilter<"Client"> | string
     passwordHash?: StringFilter<"Client"> | string
     email?: StringFilter<"Client"> | string
@@ -4642,7 +4608,7 @@ export namespace Prisma {
   }
 
   export type ClientWhereUniqueInput = Prisma.AtLeast<{
-    client_id?: bigint | number
+    client_id?: string
     email?: string
     address?: string
     AND?: ClientWhereInput | ClientWhereInput[]
@@ -4672,7 +4638,7 @@ export namespace Prisma {
     AND?: ClientScalarWhereWithAggregatesInput | ClientScalarWhereWithAggregatesInput[]
     OR?: ClientScalarWhereWithAggregatesInput[]
     NOT?: ClientScalarWhereWithAggregatesInput | ClientScalarWhereWithAggregatesInput[]
-    client_id?: BigIntWithAggregatesFilter<"Client"> | bigint | number
+    client_id?: UuidWithAggregatesFilter<"Client"> | string
     username?: StringWithAggregatesFilter<"Client"> | string
     passwordHash?: StringWithAggregatesFilter<"Client"> | string
     email?: StringWithAggregatesFilter<"Client"> | string
@@ -4684,7 +4650,7 @@ export namespace Prisma {
     AND?: ProductsWhereInput | ProductsWhereInput[]
     OR?: ProductsWhereInput[]
     NOT?: ProductsWhereInput | ProductsWhereInput[]
-    product_id?: BigIntFilter<"Products"> | bigint | number
+    product_id?: UuidFilter<"Products"> | string
     image?: StringFilter<"Products"> | string
     description?: StringFilter<"Products"> | string
     title?: StringFilter<"Products"> | string
@@ -4704,7 +4670,7 @@ export namespace Prisma {
   }
 
   export type ProductsWhereUniqueInput = Prisma.AtLeast<{
-    product_id?: bigint | number
+    product_id?: string
     AND?: ProductsWhereInput | ProductsWhereInput[]
     OR?: ProductsWhereInput[]
     NOT?: ProductsWhereInput | ProductsWhereInput[]
@@ -4734,7 +4700,7 @@ export namespace Prisma {
     AND?: ProductsScalarWhereWithAggregatesInput | ProductsScalarWhereWithAggregatesInput[]
     OR?: ProductsScalarWhereWithAggregatesInput[]
     NOT?: ProductsScalarWhereWithAggregatesInput | ProductsScalarWhereWithAggregatesInput[]
-    product_id?: BigIntWithAggregatesFilter<"Products"> | bigint | number
+    product_id?: UuidWithAggregatesFilter<"Products"> | string
     image?: StringWithAggregatesFilter<"Products"> | string
     description?: StringWithAggregatesFilter<"Products"> | string
     title?: StringWithAggregatesFilter<"Products"> | string
@@ -4746,9 +4712,9 @@ export namespace Prisma {
     AND?: ReviewWhereInput | ReviewWhereInput[]
     OR?: ReviewWhereInput[]
     NOT?: ReviewWhereInput | ReviewWhereInput[]
-    review_id?: BigIntFilter<"Review"> | bigint | number
-    author_id?: BigIntFilter<"Review"> | bigint | number
-    product_id?: BigIntFilter<"Review"> | bigint | number
+    review_id?: UuidFilter<"Review"> | string
+    author_id?: UuidFilter<"Review"> | string
+    product_id?: UuidFilter<"Review"> | string
     review_text?: StringFilter<"Review"> | string
     review_score?: IntFilter<"Review"> | number
     review_title?: StringFilter<"Review"> | string
@@ -4768,12 +4734,12 @@ export namespace Prisma {
   }
 
   export type ReviewWhereUniqueInput = Prisma.AtLeast<{
-    review_id?: bigint | number
+    review_id?: string
     AND?: ReviewWhereInput | ReviewWhereInput[]
     OR?: ReviewWhereInput[]
     NOT?: ReviewWhereInput | ReviewWhereInput[]
-    author_id?: BigIntFilter<"Review"> | bigint | number
-    product_id?: BigIntFilter<"Review"> | bigint | number
+    author_id?: UuidFilter<"Review"> | string
+    product_id?: UuidFilter<"Review"> | string
     review_text?: StringFilter<"Review"> | string
     review_score?: IntFilter<"Review"> | number
     review_title?: StringFilter<"Review"> | string
@@ -4799,16 +4765,16 @@ export namespace Prisma {
     AND?: ReviewScalarWhereWithAggregatesInput | ReviewScalarWhereWithAggregatesInput[]
     OR?: ReviewScalarWhereWithAggregatesInput[]
     NOT?: ReviewScalarWhereWithAggregatesInput | ReviewScalarWhereWithAggregatesInput[]
-    review_id?: BigIntWithAggregatesFilter<"Review"> | bigint | number
-    author_id?: BigIntWithAggregatesFilter<"Review"> | bigint | number
-    product_id?: BigIntWithAggregatesFilter<"Review"> | bigint | number
+    review_id?: UuidWithAggregatesFilter<"Review"> | string
+    author_id?: UuidWithAggregatesFilter<"Review"> | string
+    product_id?: UuidWithAggregatesFilter<"Review"> | string
     review_text?: StringWithAggregatesFilter<"Review"> | string
     review_score?: IntWithAggregatesFilter<"Review"> | number
     review_title?: StringWithAggregatesFilter<"Review"> | string
   }
 
   export type ClientCreateInput = {
-    client_id?: bigint | number
+    client_id?: string
     username: string
     passwordHash: string
     email: string
@@ -4818,7 +4784,7 @@ export namespace Prisma {
   }
 
   export type ClientUncheckedCreateInput = {
-    client_id?: bigint | number
+    client_id?: string
     username: string
     passwordHash: string
     email: string
@@ -4828,7 +4794,7 @@ export namespace Prisma {
   }
 
   export type ClientUpdateInput = {
-    client_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    client_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     passwordHash?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -4838,7 +4804,7 @@ export namespace Prisma {
   }
 
   export type ClientUncheckedUpdateInput = {
-    client_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    client_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     passwordHash?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -4848,7 +4814,7 @@ export namespace Prisma {
   }
 
   export type ClientCreateManyInput = {
-    client_id?: bigint | number
+    client_id?: string
     username: string
     passwordHash: string
     email: string
@@ -4857,7 +4823,7 @@ export namespace Prisma {
   }
 
   export type ClientUpdateManyMutationInput = {
-    client_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    client_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     passwordHash?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -4866,7 +4832,7 @@ export namespace Prisma {
   }
 
   export type ClientUncheckedUpdateManyInput = {
-    client_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    client_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     passwordHash?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -4875,7 +4841,7 @@ export namespace Prisma {
   }
 
   export type ProductsCreateInput = {
-    product_id?: bigint | number
+    product_id?: string
     image: string
     description: string
     title: string
@@ -4885,7 +4851,7 @@ export namespace Prisma {
   }
 
   export type ProductsUncheckedCreateInput = {
-    product_id?: bigint | number
+    product_id?: string
     image: string
     description: string
     title: string
@@ -4895,7 +4861,7 @@ export namespace Prisma {
   }
 
   export type ProductsUpdateInput = {
-    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    product_id?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -4905,7 +4871,7 @@ export namespace Prisma {
   }
 
   export type ProductsUncheckedUpdateInput = {
-    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    product_id?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -4915,7 +4881,7 @@ export namespace Prisma {
   }
 
   export type ProductsCreateManyInput = {
-    product_id?: bigint | number
+    product_id?: string
     image: string
     description: string
     title: string
@@ -4924,7 +4890,7 @@ export namespace Prisma {
   }
 
   export type ProductsUpdateManyMutationInput = {
-    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    product_id?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -4933,7 +4899,7 @@ export namespace Prisma {
   }
 
   export type ProductsUncheckedUpdateManyInput = {
-    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    product_id?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -4942,7 +4908,7 @@ export namespace Prisma {
   }
 
   export type ReviewCreateInput = {
-    review_id?: bigint | number
+    review_id?: string
     review_text: string
     review_score: number
     review_title: string
@@ -4951,16 +4917,16 @@ export namespace Prisma {
   }
 
   export type ReviewUncheckedCreateInput = {
-    review_id?: bigint | number
-    author_id: bigint | number
-    product_id: bigint | number
+    review_id?: string
+    author_id: string
+    product_id: string
     review_text: string
     review_score: number
     review_title: string
   }
 
   export type ReviewUpdateInput = {
-    review_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    review_id?: StringFieldUpdateOperationsInput | string
     review_text?: StringFieldUpdateOperationsInput | string
     review_score?: IntFieldUpdateOperationsInput | number
     review_title?: StringFieldUpdateOperationsInput | string
@@ -4969,48 +4935,49 @@ export namespace Prisma {
   }
 
   export type ReviewUncheckedUpdateInput = {
-    review_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    author_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    review_id?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
+    product_id?: StringFieldUpdateOperationsInput | string
     review_text?: StringFieldUpdateOperationsInput | string
     review_score?: IntFieldUpdateOperationsInput | number
     review_title?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReviewCreateManyInput = {
-    review_id?: bigint | number
-    author_id: bigint | number
-    product_id: bigint | number
+    review_id?: string
+    author_id: string
+    product_id: string
     review_text: string
     review_score: number
     review_title: string
   }
 
   export type ReviewUpdateManyMutationInput = {
-    review_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    review_id?: StringFieldUpdateOperationsInput | string
     review_text?: StringFieldUpdateOperationsInput | string
     review_score?: IntFieldUpdateOperationsInput | number
     review_title?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReviewUncheckedUpdateManyInput = {
-    review_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    author_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    review_id?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
+    product_id?: StringFieldUpdateOperationsInput | string
     review_text?: StringFieldUpdateOperationsInput | string
     review_score?: IntFieldUpdateOperationsInput | number
     review_title?: StringFieldUpdateOperationsInput | string
   }
 
-  export type BigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  export type UuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidFilter<$PrismaModel> | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -5059,7 +5026,6 @@ export namespace Prisma {
   }
 
   export type ClientAvgOrderByAggregateInput = {
-    client_id?: SortOrder
     phone_number?: SortOrder
   }
 
@@ -5082,24 +5048,22 @@ export namespace Prisma {
   }
 
   export type ClientSumOrderByAggregateInput = {
-    client_id?: SortOrder
     phone_number?: SortOrder
   }
 
-  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -5154,7 +5118,6 @@ export namespace Prisma {
   }
 
   export type ProductsAvgOrderByAggregateInput = {
-    product_id?: SortOrder
     stock?: SortOrder
   }
 
@@ -5175,7 +5138,6 @@ export namespace Prisma {
   }
 
   export type ProductsSumOrderByAggregateInput = {
-    product_id?: SortOrder
     stock?: SortOrder
   }
 
@@ -5199,9 +5161,6 @@ export namespace Prisma {
   }
 
   export type ReviewAvgOrderByAggregateInput = {
-    review_id?: SortOrder
-    author_id?: SortOrder
-    product_id?: SortOrder
     review_score?: SortOrder
   }
 
@@ -5224,9 +5183,6 @@ export namespace Prisma {
   }
 
   export type ReviewSumOrderByAggregateInput = {
-    review_id?: SortOrder
-    author_id?: SortOrder
-    product_id?: SortOrder
     review_score?: SortOrder
   }
 
@@ -5242,14 +5198,6 @@ export namespace Prisma {
     connectOrCreate?: ReviewCreateOrConnectWithoutAuthorInput | ReviewCreateOrConnectWithoutAuthorInput[]
     createMany?: ReviewCreateManyAuthorInputEnvelope
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-  }
-
-  export type BigIntFieldUpdateOperationsInput = {
-    set?: bigint | number
-    increment?: bigint | number
-    decrement?: bigint | number
-    multiply?: bigint | number
-    divide?: bigint | number
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -5371,15 +5319,15 @@ export namespace Prisma {
     update?: XOR<XOR<ProductsUpdateToOneWithWhereWithoutReviewInput, ProductsUpdateWithoutReviewInput>, ProductsUncheckedUpdateWithoutReviewInput>
   }
 
-  export type NestedBigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  export type NestedUuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidFilter<$PrismaModel> | string
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5407,31 +5355,18 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+  export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -5467,8 +5402,19 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type ReviewCreateWithoutAuthorInput = {
-    review_id?: bigint | number
+    review_id?: string
     review_text: string
     review_score: number
     review_title: string
@@ -5476,8 +5422,8 @@ export namespace Prisma {
   }
 
   export type ReviewUncheckedCreateWithoutAuthorInput = {
-    review_id?: bigint | number
-    product_id: bigint | number
+    review_id?: string
+    product_id: string
     review_text: string
     review_score: number
     review_title: string
@@ -5513,16 +5459,16 @@ export namespace Prisma {
     AND?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
     OR?: ReviewScalarWhereInput[]
     NOT?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
-    review_id?: BigIntFilter<"Review"> | bigint | number
-    author_id?: BigIntFilter<"Review"> | bigint | number
-    product_id?: BigIntFilter<"Review"> | bigint | number
+    review_id?: UuidFilter<"Review"> | string
+    author_id?: UuidFilter<"Review"> | string
+    product_id?: UuidFilter<"Review"> | string
     review_text?: StringFilter<"Review"> | string
     review_score?: IntFilter<"Review"> | number
     review_title?: StringFilter<"Review"> | string
   }
 
   export type ReviewCreateWithoutProductInput = {
-    review_id?: bigint | number
+    review_id?: string
     review_text: string
     review_score: number
     review_title: string
@@ -5530,8 +5476,8 @@ export namespace Prisma {
   }
 
   export type ReviewUncheckedCreateWithoutProductInput = {
-    review_id?: bigint | number
-    author_id: bigint | number
+    review_id?: string
+    author_id: string
     review_text: string
     review_score: number
     review_title: string
@@ -5564,7 +5510,7 @@ export namespace Prisma {
   }
 
   export type ClientCreateWithoutReviewInput = {
-    client_id?: bigint | number
+    client_id?: string
     username: string
     passwordHash: string
     email: string
@@ -5573,7 +5519,7 @@ export namespace Prisma {
   }
 
   export type ClientUncheckedCreateWithoutReviewInput = {
-    client_id?: bigint | number
+    client_id?: string
     username: string
     passwordHash: string
     email: string
@@ -5587,7 +5533,7 @@ export namespace Prisma {
   }
 
   export type ProductsCreateWithoutReviewInput = {
-    product_id?: bigint | number
+    product_id?: string
     image: string
     description: string
     title: string
@@ -5596,7 +5542,7 @@ export namespace Prisma {
   }
 
   export type ProductsUncheckedCreateWithoutReviewInput = {
-    product_id?: bigint | number
+    product_id?: string
     image: string
     description: string
     title: string
@@ -5621,7 +5567,7 @@ export namespace Prisma {
   }
 
   export type ClientUpdateWithoutReviewInput = {
-    client_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    client_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     passwordHash?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -5630,7 +5576,7 @@ export namespace Prisma {
   }
 
   export type ClientUncheckedUpdateWithoutReviewInput = {
-    client_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    client_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     passwordHash?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -5650,7 +5596,7 @@ export namespace Prisma {
   }
 
   export type ProductsUpdateWithoutReviewInput = {
-    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    product_id?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -5659,7 +5605,7 @@ export namespace Prisma {
   }
 
   export type ProductsUncheckedUpdateWithoutReviewInput = {
-    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    product_id?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -5668,15 +5614,15 @@ export namespace Prisma {
   }
 
   export type ReviewCreateManyAuthorInput = {
-    review_id?: bigint | number
-    product_id: bigint | number
+    review_id?: string
+    product_id: string
     review_text: string
     review_score: number
     review_title: string
   }
 
   export type ReviewUpdateWithoutAuthorInput = {
-    review_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    review_id?: StringFieldUpdateOperationsInput | string
     review_text?: StringFieldUpdateOperationsInput | string
     review_score?: IntFieldUpdateOperationsInput | number
     review_title?: StringFieldUpdateOperationsInput | string
@@ -5684,31 +5630,31 @@ export namespace Prisma {
   }
 
   export type ReviewUncheckedUpdateWithoutAuthorInput = {
-    review_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    review_id?: StringFieldUpdateOperationsInput | string
+    product_id?: StringFieldUpdateOperationsInput | string
     review_text?: StringFieldUpdateOperationsInput | string
     review_score?: IntFieldUpdateOperationsInput | number
     review_title?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReviewUncheckedUpdateManyWithoutAuthorInput = {
-    review_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    review_id?: StringFieldUpdateOperationsInput | string
+    product_id?: StringFieldUpdateOperationsInput | string
     review_text?: StringFieldUpdateOperationsInput | string
     review_score?: IntFieldUpdateOperationsInput | number
     review_title?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReviewCreateManyProductInput = {
-    review_id?: bigint | number
-    author_id: bigint | number
+    review_id?: string
+    author_id: string
     review_text: string
     review_score: number
     review_title: string
   }
 
   export type ReviewUpdateWithoutProductInput = {
-    review_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    review_id?: StringFieldUpdateOperationsInput | string
     review_text?: StringFieldUpdateOperationsInput | string
     review_score?: IntFieldUpdateOperationsInput | number
     review_title?: StringFieldUpdateOperationsInput | string
@@ -5716,16 +5662,16 @@ export namespace Prisma {
   }
 
   export type ReviewUncheckedUpdateWithoutProductInput = {
-    review_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    author_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    review_id?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
     review_text?: StringFieldUpdateOperationsInput | string
     review_score?: IntFieldUpdateOperationsInput | number
     review_title?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReviewUncheckedUpdateManyWithoutProductInput = {
-    review_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    author_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    review_id?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
     review_text?: StringFieldUpdateOperationsInput | string
     review_score?: IntFieldUpdateOperationsInput | number
     review_title?: StringFieldUpdateOperationsInput | string

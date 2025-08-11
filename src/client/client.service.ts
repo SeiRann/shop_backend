@@ -8,7 +8,7 @@ export class ClientService {
   constructor(private prisma: PrismaService) {}
 
   async create(createClientDto: CreateClientDto) {
-    const newClient = await this.prisma.client.create({
+    await this.prisma.client.create({
       data:{
         username:createClientDto.username,
         passwordHash:createClientDto.password,
@@ -34,7 +34,7 @@ export class ClientService {
   }
 
   async update(id: number, updateClientDto: UpdateClientDto) {
-    const client = await this.prisma.client.update({
+    await this.prisma.client.update({
       where:{
         client_id: id,
       },
@@ -51,7 +51,7 @@ export class ClientService {
   }
 
   async remove(id: number) {
-    const client = await this.prisma.client.delete({where:{client_id:id}})
+    await this.prisma.client.delete({where:{client_id:id}})
 
     return `Client deleted`
   }
