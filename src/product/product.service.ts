@@ -9,50 +9,52 @@ export class ProductService {
 
   async create(createProductDto: CreateProductDto) {
     await this.prisma.products.create({
-      data:{
-        image:createProductDto.image,
-        title:createProductDto.title,
-        description:createProductDto.description,
-        sizes:createProductDto.sizes,
-        stock:createProductDto.stock,
-      }
-    })
+      data: {
+        image: createProductDto.image,
+        title: createProductDto.title,
+        description: createProductDto.description,
+        sizes: createProductDto.sizes,
+        stock: createProductDto.stock,
+      },
+    });
 
-    return `The product ${createProductDto.title} has been created`
+    return `The product ${createProductDto.title} has been created`;
   }
 
   async findAll() {
     const products = await this.prisma.products.findMany();
 
-    return products
+    return products;
   }
 
   async findOne(id: string) {
-    const product = await this.prisma.products.findUnique({where:{product_id: id}})
+    const product = await this.prisma.products.findUnique({
+      where: { product_id: id },
+    });
 
-    return product
+    return product;
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {
     await this.prisma.products.update({
-      where:{
-        product_id: id
+      where: {
+        product_id: id,
       },
-      data:{
-        image:updateProductDto.image,
-        title:updateProductDto.title,
-        description:updateProductDto.description,
-        sizes:updateProductDto.sizes,
-        stock:updateProductDto.stock,
-      }
-    })
+      data: {
+        image: updateProductDto.image,
+        title: updateProductDto.title,
+        description: updateProductDto.description,
+        sizes: updateProductDto.sizes,
+        stock: updateProductDto.stock,
+      },
+    });
 
-    return `Product ${updateProductDto.title} has been updated`
+    return `Product ${updateProductDto.title} has been updated`;
   }
 
   async remove(id: string) {
-    await this.prisma.products.delete({where:{product_id:id}})
+    await this.prisma.products.delete({ where: { product_id: id } });
 
-    return `Product has been deleted`
+    return `Product has been deleted`;
   }
 }

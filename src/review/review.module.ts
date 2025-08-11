@@ -4,7 +4,7 @@ import { ReviewController } from './review.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 
 @Module({
-  imports:[PrismaModule],
+  imports: [PrismaModule],
   controllers: [ReviewController],
   providers: [ReviewService],
 })

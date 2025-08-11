@@ -5,53 +5,54 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class ReviewService {
-  constructor(private prisma:PrismaService){}
-
+  constructor(private prisma: PrismaService) {}
 
   async create(createReviewDto: CreateReviewDto) {
     await this.prisma.review.create({
-      data:{
-        review_title:createReviewDto.review_title,
-        review_score:createReviewDto.review_score,
-        review_text:createReviewDto.review_text,
-        product_id:createReviewDto.product_id,
-        author_id:createReviewDto.author_id,
-      }
-    })
+      data: {
+        review_title: createReviewDto.review_title,
+        review_score: createReviewDto.review_score,
+        review_text: createReviewDto.review_text,
+        product_id: createReviewDto.product_id,
+        author_id: createReviewDto.author_id,
+      },
+    });
 
-    return `Review has been created`
+    return `Review has been created`;
   }
 
   async findAll() {
-    const reviews = await this.prisma.review.findMany()
+    const reviews = await this.prisma.review.findMany();
 
-    return reviews
+    return reviews;
   }
 
   async findOne(id: string) {
-    const review = await this.prisma.review.findUnique({where:{review_id:id}})
+    const review = await this.prisma.review.findUnique({
+      where: { review_id: id },
+    });
 
     return review;
   }
 
   async update(id: string, updateReviewDto: UpdateReviewDto) {
     await this.prisma.review.update({
-      where:{
-        review_id:id
+      where: {
+        review_id: id,
       },
-      data:{
-        review_title:updateReviewDto.review_title,
-        review_score:updateReviewDto.review_score,
-        review_text:updateReviewDto.review_text,
-      }
-    })
+      data: {
+        review_title: updateReviewDto.review_title,
+        review_score: updateReviewDto.review_score,
+        review_text: updateReviewDto.review_text,
+      },
+    });
 
-    return `Review has been updated`
+    return `Review has been updated`;
   }
 
   async remove(id: string) {
-    await this.prisma.review.delete({where:{review_id:id}})
-    
+    await this.prisma.review.delete({ where: { review_id: id } });
+
     return `This action removes a #${id} review`;
   }
 }

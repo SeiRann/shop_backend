@@ -9,50 +9,52 @@ export class ClientService {
 
   async create(createClientDto: CreateClientDto) {
     await this.prisma.client.create({
-      data:{
-        username:createClientDto.username,
-        passwordHash:createClientDto.password,
-        email:createClientDto.email,
-        phone_number:createClientDto.phone_number,
-        address:createClientDto.address
-      }
-    })
+      data: {
+        username: createClientDto.username,
+        passwordHash: createClientDto.password,
+        email: createClientDto.email,
+        phone_number: createClientDto.phone_number,
+        address: createClientDto.address,
+      },
+    });
 
-    return `Created ${createClientDto.username} user`
+    return `Created ${createClientDto.username} user`;
   }
 
   async findAll() {
-    const clients = await this.prisma.client.findMany()
+    const clients = await this.prisma.client.findMany();
 
-    return clients
+    return clients;
   }
 
   async findOne(id: string) {
-    const client = await this.prisma.client.findUnique({where:{client_id:id}})
+    const client = await this.prisma.client.findUnique({
+      where: { client_id: id },
+    });
 
-    return client
+    return client;
   }
 
   async update(id: string, updateClientDto: UpdateClientDto) {
     await this.prisma.client.update({
-      where:{
+      where: {
         client_id: id,
       },
-      data:{
+      data: {
         username: updateClientDto.username,
-        email:updateClientDto.email,
-        passwordHash:updateClientDto.password,
-        address:updateClientDto.address,
-        phone_number:updateClientDto.phone_number
-      }
-    })
+        email: updateClientDto.email,
+        passwordHash: updateClientDto.password,
+        address: updateClientDto.address,
+        phone_number: updateClientDto.phone_number,
+      },
+    });
 
-    return `Updated ${updateClientDto.username} user information`
+    return `Updated ${updateClientDto.username} user information`;
   }
 
   async remove(id: string) {
-    await this.prisma.client.delete({where:{client_id:id}})
+    await this.prisma.client.delete({ where: { client_id: id } });
 
-    return `Client deleted`
+    return `Client deleted`;
   }
 }
