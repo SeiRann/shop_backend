@@ -30,11 +30,6 @@ export class ClientController {
     return this.clientService.findOne(id);
   }
 
-  @Post('login')
-  login() {
-    return 'User loged in';
-  }
-
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
     return this.clientService.update(id, updateClientDto);

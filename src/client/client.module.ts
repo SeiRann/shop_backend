@@ -8,7 +8,6 @@ import { ClientService } from './client.service';
 import { ClientController } from './client.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { PasswordHasherMiddleware } from 'src/password-hasher/password-hasher.middleware';
-import { AuthenticationMiddleware } from 'src/authentication/authentication.middleware';
 
 @Module({
   imports: [PrismaModule],
@@ -20,8 +19,5 @@ export class ClientModule implements NestModule {
     consumer
       .apply(PasswordHasherMiddleware)
       .forRoutes({ path: 'client', method: RequestMethod.POST });
-    consumer
-      .apply(AuthenticationMiddleware)
-      .forRoutes({ path: 'client/login', method: RequestMethod.POST });
   }
 }
