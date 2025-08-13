@@ -35,8 +35,10 @@ export class AuthService {
           username: client.username,
         };
 
+        const access_token = await this.jwtService.signAsync(payload);
+
         return {
-          access_token: await this.jwtService.signAsync(payload),
+          access_token: access_token,
         };
       } else {
         throw new UnauthorizedException();
@@ -45,9 +47,4 @@ export class AuthService {
       throw new NotFoundException();
     }
   }
-
-  verifyAccessJWT() {}
-  refreshAccessJWT() {}
-  verifyRefreshJWT() {}
-  generateJWT() {}
 }
