@@ -6,29 +6,38 @@ import {
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 import { SignInDto } from './dto/signin.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private jwtService: JwtService,
+  ) {}
 
   async signIn(signIn: SignInDto) {
-    const user = await this.prisma.client.findUnique({
+    const client = await this.prisma.client.findUnique({
       where: {
         email: signIn.email,
       },
     });
 
-    if (user) {
+    if (client) {
       const passwordCheck = await bcrypt.compare(
         signIn.password,
-        user.passwordHash,
+        client.passwordHash,
       );
 
       if (passwordCheck) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { passwordHash, ...result } = user;
+        const payload = {
+          sub: client.client_id,
+          username: client.username,
+        };
 
-        return result;
+        return {
+          access_token: await this.jwtService.signAsync(payload),
+        };
       } else {
         throw new UnauthorizedException();
       }
@@ -37,8 +46,8 @@ export class AuthService {
     }
   }
 
-  validateAccessJWT() {}
+  verifyAccessJWT() {}
   refreshAccessJWT() {}
-  validateRefreshJWT() {}
+  verifyRefreshJWT() {}
   generateJWT() {}
 }
