@@ -7,6 +7,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 import { SignInDto } from './dto/signin.dto';
 import { JwtService } from '@nestjs/jwt';
+import { jwtConstants } from './constants';
 
 @Injectable()
 export class AuthService {
@@ -28,7 +29,21 @@ export class AuthService {
         client.passwordHash,
       );
 
-      if (passwordCheck) {
+      if (passwordCheck && client.isAdmin) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const payload = {
+          sub: client.client_id,
+          username: client.username,
+        };
+
+        const access_token = await this.jwtService.signAsync(payload, {
+          secret: jwtConstants.admin_access_secret,
+        });
+        console.log('admin logged in');
+        return {
+          access_token: access_token,
+        };
+      } else if (passwordCheck) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const payload = {
           sub: client.client_id,
@@ -36,7 +51,7 @@ export class AuthService {
         };
 
         const access_token = await this.jwtService.signAsync(payload);
-
+        console.log('regular user logged in');
         return {
           access_token: access_token,
         };

@@ -16,6 +16,7 @@ model Client {
   email        String   @unique
   phone_number Int
   address      String   @unique
+  isAdmin      Boolean  @default(false)
   Review       Review[]
 }
 

@@ -126,7 +126,8 @@ exports.Prisma.ClientScalarFieldEnum = {
   passwordHash: 'passwordHash',
   email: 'email',
   phone_number: 'phone_number',
-  address: 'address'
+  address: 'address',
+  isAdmin: 'isAdmin'
 };
 
 exports.Prisma.ProductsScalarFieldEnum = {

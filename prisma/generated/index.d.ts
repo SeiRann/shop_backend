@@ -1152,6 +1152,7 @@ export namespace Prisma {
     email: string | null
     phone_number: number | null
     address: string | null
+    isAdmin: boolean | null
   }
 
   export type ClientMaxAggregateOutputType = {
@@ -1161,6 +1162,7 @@ export namespace Prisma {
     email: string | null
     phone_number: number | null
     address: string | null
+    isAdmin: boolean | null
   }
 
   export type ClientCountAggregateOutputType = {
@@ -1170,6 +1172,7 @@ export namespace Prisma {
     email: number
     phone_number: number
     address: number
+    isAdmin: number
     _all: number
   }
 
@@ -1189,6 +1192,7 @@ export namespace Prisma {
     email?: true
     phone_number?: true
     address?: true
+    isAdmin?: true
   }
 
   export type ClientMaxAggregateInputType = {
@@ -1198,6 +1202,7 @@ export namespace Prisma {
     email?: true
     phone_number?: true
     address?: true
+    isAdmin?: true
   }
 
   export type ClientCountAggregateInputType = {
@@ -1207,6 +1212,7 @@ export namespace Prisma {
     email?: true
     phone_number?: true
     address?: true
+    isAdmin?: true
     _all?: true
   }
 
@@ -1303,6 +1309,7 @@ export namespace Prisma {
     email: string
     phone_number: number
     address: string
+    isAdmin: boolean
     _count: ClientCountAggregateOutputType | null
     _avg: ClientAvgAggregateOutputType | null
     _sum: ClientSumAggregateOutputType | null
@@ -1331,6 +1338,7 @@ export namespace Prisma {
     email?: boolean
     phone_number?: boolean
     address?: boolean
+    isAdmin?: boolean
     Review?: boolean | Client$ReviewArgs<ExtArgs>
     _count?: boolean | ClientCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["client"]>
@@ -1342,6 +1350,7 @@ export namespace Prisma {
     email?: boolean
     phone_number?: boolean
     address?: boolean
+    isAdmin?: boolean
   }, ExtArgs["result"]["client"]>
 
   export type ClientSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1351,6 +1360,7 @@ export namespace Prisma {
     email?: boolean
     phone_number?: boolean
     address?: boolean
+    isAdmin?: boolean
   }, ExtArgs["result"]["client"]>
 
   export type ClientSelectScalar = {
@@ -1360,9 +1370,10 @@ export namespace Prisma {
     email?: boolean
     phone_number?: boolean
     address?: boolean
+    isAdmin?: boolean
   }
 
-  export type ClientOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"client_id" | "username" | "passwordHash" | "email" | "phone_number" | "address", ExtArgs["result"]["client"]>
+  export type ClientOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"client_id" | "username" | "passwordHash" | "email" | "phone_number" | "address" | "isAdmin", ExtArgs["result"]["client"]>
   export type ClientInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Review?: boolean | Client$ReviewArgs<ExtArgs>
     _count?: boolean | ClientCountOutputTypeDefaultArgs<ExtArgs>
@@ -1382,6 +1393,7 @@ export namespace Prisma {
       email: string
       phone_number: number
       address: string
+      isAdmin: boolean
     }, ExtArgs["result"]["client"]>
     composites: {}
   }
@@ -1812,6 +1824,7 @@ export namespace Prisma {
     readonly email: FieldRef<"Client", 'String'>
     readonly phone_number: FieldRef<"Client", 'Int'>
     readonly address: FieldRef<"Client", 'String'>
+    readonly isAdmin: FieldRef<"Client", 'Boolean'>
   }
     
 
@@ -4488,7 +4501,8 @@ export namespace Prisma {
     passwordHash: 'passwordHash',
     email: 'email',
     phone_number: 'phone_number',
-    address: 'address'
+    address: 'address',
+    isAdmin: 'isAdmin'
   };
 
   export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
@@ -4568,6 +4582,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -4594,6 +4615,7 @@ export namespace Prisma {
     email?: StringFilter<"Client"> | string
     phone_number?: IntFilter<"Client"> | number
     address?: StringFilter<"Client"> | string
+    isAdmin?: BoolFilter<"Client"> | boolean
     Review?: ReviewListRelationFilter
   }
 
@@ -4604,6 +4626,7 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     address?: SortOrder
+    isAdmin?: SortOrder
     Review?: ReviewOrderByRelationAggregateInput
   }
 
@@ -4617,6 +4640,7 @@ export namespace Prisma {
     username?: StringFilter<"Client"> | string
     passwordHash?: StringFilter<"Client"> | string
     phone_number?: IntFilter<"Client"> | number
+    isAdmin?: BoolFilter<"Client"> | boolean
     Review?: ReviewListRelationFilter
   }, "client_id" | "email" | "address">
 
@@ -4627,6 +4651,7 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     address?: SortOrder
+    isAdmin?: SortOrder
     _count?: ClientCountOrderByAggregateInput
     _avg?: ClientAvgOrderByAggregateInput
     _max?: ClientMaxOrderByAggregateInput
@@ -4644,6 +4669,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Client"> | string
     phone_number?: IntWithAggregatesFilter<"Client"> | number
     address?: StringWithAggregatesFilter<"Client"> | string
+    isAdmin?: BoolWithAggregatesFilter<"Client"> | boolean
   }
 
   export type ProductsWhereInput = {
@@ -4780,6 +4806,7 @@ export namespace Prisma {
     email: string
     phone_number: number
     address: string
+    isAdmin?: boolean
     Review?: ReviewCreateNestedManyWithoutAuthorInput
   }
 
@@ -4790,6 +4817,7 @@ export namespace Prisma {
     email: string
     phone_number: number
     address: string
+    isAdmin?: boolean
     Review?: ReviewUncheckedCreateNestedManyWithoutAuthorInput
   }
 
@@ -4800,6 +4828,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
     Review?: ReviewUpdateManyWithoutAuthorNestedInput
   }
 
@@ -4810,6 +4839,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
     Review?: ReviewUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
@@ -4820,6 +4850,7 @@ export namespace Prisma {
     email: string
     phone_number: number
     address: string
+    isAdmin?: boolean
   }
 
   export type ClientUpdateManyMutationInput = {
@@ -4829,6 +4860,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ClientUncheckedUpdateManyInput = {
@@ -4838,6 +4870,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductsCreateInput = {
@@ -5006,6 +5039,11 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type ReviewListRelationFilter = {
     every?: ReviewWhereInput
     some?: ReviewWhereInput
@@ -5023,6 +5061,7 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     address?: SortOrder
+    isAdmin?: SortOrder
   }
 
   export type ClientAvgOrderByAggregateInput = {
@@ -5036,6 +5075,7 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     address?: SortOrder
+    isAdmin?: SortOrder
   }
 
   export type ClientMinOrderByAggregateInput = {
@@ -5045,6 +5085,7 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     address?: SortOrder
+    isAdmin?: SortOrder
   }
 
   export type ClientSumOrderByAggregateInput = {
@@ -5098,6 +5139,14 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type StringNullableListFilter<$PrismaModel = never> = {
@@ -5210,6 +5259,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type ReviewUpdateManyWithoutAuthorNestedInput = {
@@ -5355,6 +5408,11 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -5411,6 +5469,14 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type ReviewCreateWithoutAuthorInput = {
@@ -5516,6 +5582,7 @@ export namespace Prisma {
     email: string
     phone_number: number
     address: string
+    isAdmin?: boolean
   }
 
   export type ClientUncheckedCreateWithoutReviewInput = {
@@ -5525,6 +5592,7 @@ export namespace Prisma {
     email: string
     phone_number: number
     address: string
+    isAdmin?: boolean
   }
 
   export type ClientCreateOrConnectWithoutReviewInput = {
@@ -5573,6 +5641,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ClientUncheckedUpdateWithoutReviewInput = {
@@ -5582,6 +5651,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductsUpsertWithoutReviewInput = {
