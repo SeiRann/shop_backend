@@ -12,12 +12,14 @@ import { AuthService } from './auth.service';
 import { SignInDto } from './dto/signin.dto';
 import express from 'express';
 import { Admin } from 'src/is-admin/is-admin.decorator';
+import { Public } from 'src/public-route/public-route.decorator';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @HttpCode(HttpStatus.OK)
+  @Public()
   @Post('login')
   async signIn(
     @Res({ passthrough: true }) response: express.Response,
@@ -43,14 +45,13 @@ export class AuthController {
   }
   //TODO: make it work without public and only with guards
   @HttpCode(HttpStatus.OK)
+  @Public()
   @Post('logout')
-  signOut(@Res({ passthrough: true }) response: express.Response) {
-    console.log(response);
-    response.clearCookie('jwtCookie', {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-    });
+  signOut(
+    @Req() request: express.Request,
+    @Res({ passthrough: true }) response: express.Response,
+  ) {
+    this.authService.signOut(request, response);
 
     return response.json({ message: 'Signed out successfully' });
   }
