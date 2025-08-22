@@ -4,15 +4,14 @@ import {
   HttpCode,
   HttpStatus,
   Post,
-  UseGuards,
-  Get,
-  Request,
   Res,
+  Req,
+  Get,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto/signin.dto';
-import { AuthGuard } from './auth.guard';
 import express from 'express';
+import { Admin } from 'src/is-admin/is-admin.decorator';
 import { Public } from 'src/public-route/public-route.decorator';
 
 @Controller('auth')
@@ -38,10 +37,22 @@ export class AuthController {
     return response.json({ message: 'Signed in successfully' });
   }
 
-  @UseGuards(AuthGuard)
-  @Get('profile')
-  getProfile(@Request() req) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-    return req.user;
+  @HttpCode(HttpStatus.OK)
+  @Admin()
+  @Get('admin')
+  checkAdmin(@Req() request: express.Request) {
+    this.authService.checkAdmin(request);
+  }
+  //TODO: make it work without public and only with guards
+  @HttpCode(HttpStatus.OK)
+  @Public()
+  @Post('logout')
+  signOut(
+    @Req() request: express.Request,
+    @Res({ passthrough: true }) response: express.Response,
+  ) {
+    this.authService.signOut(request, response);
+
+    return response.json({ message: 'Signed out successfully' });
   }
 }

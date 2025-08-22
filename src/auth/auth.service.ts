@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt';
 import { SignInDto } from './dto/signin.dto';
 import { JwtService } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
+import { Request, Response } from 'express';
 
 @Injectable()
 export class AuthService {
@@ -15,6 +16,25 @@ export class AuthService {
     private prisma: PrismaService,
     private jwtService: JwtService,
   ) {}
+
+  checkAdmin(req: Request) {
+    console.log('Is admin!');
+    console.log(req.cookies);
+  }
+
+  signOut(req: Request, res: Response) {
+    if (req.cookies.jwtCookie) {
+      console.log(req.cookies);
+      res.clearCookie('jwtCookie', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+      });
+    } else {
+      console.log("doesn't have cookies");
+      throw new UnauthorizedException('Missing cookies');
+    }
+  }
 
   async signIn(signIn: SignInDto) {
     const client = await this.prisma.client.findUnique({
@@ -41,7 +61,7 @@ export class AuthService {
         });
         console.log('admin logged in');
         return {
-          access_token: access_token,
+          admin_access_token: access_token,
         };
       } else if (passwordCheck) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
