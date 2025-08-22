@@ -4,24 +4,19 @@ import {
   HttpCode,
   HttpStatus,
   Post,
-  UseGuards,
-  Get,
-  Request,
   Res,
   Req,
+  Get,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto/signin.dto';
-import { AuthGuard } from './auth.guard';
 import express from 'express';
-import { Public } from 'src/public-route/public-route.decorator';
 import { Admin } from 'src/is-admin/is-admin.decorator';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Public()
   @HttpCode(HttpStatus.OK)
   @Post('login')
   async signIn(
@@ -42,12 +37,12 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Admin()
-  @Post('admin')
+  @Get('admin')
   checkAdmin(@Req() request: express.Request) {
     this.authService.checkAdmin(request);
   }
   //TODO: make it work without public and only with guards
-  @Public()
+  @HttpCode(HttpStatus.OK)
   @Post('logout')
   signOut(@Res({ passthrough: true }) response: express.Response) {
     console.log(response);
@@ -58,12 +53,5 @@ export class AuthController {
     });
 
     return response.json({ message: 'Signed out successfully' });
-  }
-
-  @UseGuards(AuthGuard)
-  @Get('profile')
-  getProfile(@Request() req) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-    return req.user;
   }
 }

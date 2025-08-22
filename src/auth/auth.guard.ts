@@ -32,6 +32,7 @@ export class AuthGuard implements CanActivate {
       // 💡 See this condition
       return true;
     } else if (isAdmin) {
+      console.log('admin triggered');
       const request = context.switchToHttp().getRequest();
       const token = request.cookies['jwtCookie'];
       if (!token) {
