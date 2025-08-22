@@ -35,6 +35,7 @@ export class AuthGuard implements CanActivate {
       const request = context.switchToHttp().getRequest();
       const token = request.cookies['jwtCookie'];
       if (!token) {
+        console.log("didn't receive an admin token");
         throw new UnauthorizedException();
       }
       try {
@@ -51,6 +52,7 @@ export class AuthGuard implements CanActivate {
       const request = context.switchToHttp().getRequest();
       const token = request.cookies['jwtCookie'];
       if (!token) {
+        console.log("didn't receive a jwtCookie");
         throw new UnauthorizedException();
       }
       try {

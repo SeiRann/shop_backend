@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt';
 import { SignInDto } from './dto/signin.dto';
 import { JwtService } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
+import { Request } from 'express';
 
 @Injectable()
 export class AuthService {
@@ -15,6 +16,10 @@ export class AuthService {
     private prisma: PrismaService,
     private jwtService: JwtService,
   ) {}
+
+  checkAdmin(req: Request) {
+    console.log(req);
+  }
 
   async signIn(signIn: SignInDto) {
     const client = await this.prisma.client.findUnique({
