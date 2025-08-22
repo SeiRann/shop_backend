@@ -17,9 +17,8 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  checkAdmin(req: Request) {
-    console.log('Is admin!');
-    console.log(req.cookies);
+  checkAdmin() {
+    return true;
   }
 
   signOut(req: Request, res: Response) {

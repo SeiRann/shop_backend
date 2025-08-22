@@ -7,6 +7,7 @@ import {
   Res,
   Req,
   Get,
+  Response,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto/signin.dto';
@@ -40,8 +41,10 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Admin()
   @Get('admin')
-  checkAdmin(@Req() request: express.Request) {
-    this.authService.checkAdmin(request);
+  checkAdmin(@Res({ passthrough: true }) res: express.Response) {
+    if (this.authService.checkAdmin()) {
+      return res.json({ message: 'User is admin' });
+    }
   }
   //TODO: make it work without public and only with guards
   @HttpCode(HttpStatus.OK)
