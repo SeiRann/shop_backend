@@ -21,22 +21,19 @@ export class UploaderController {
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   async create(@UploadedFile() file: Express.Multer.File) {
-    console.log();
-    return await this.uploaderService.upload(file);
+    const url = await this.uploaderService.upload(file);
+    return url;
   }
 
-  @Get()
-  findAll() {
-    return this.uploaderService.findAll();
-  }
-
+  @Admin()
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.uploaderService.findOne(+id);
+    return this.uploaderService.getSignedUrl(id);
   }
 
+  @Admin()
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.uploaderService.remove(+id);
+    return this.uploaderService.delete(id);
   }
 }
