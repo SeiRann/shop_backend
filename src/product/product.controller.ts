@@ -15,6 +15,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { Admin } from 'src/is-admin/is-admin.decorator';
 import { UploaderService } from 'src/uploader/uploader.service';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Public } from 'src/public-route/public-route.decorator';
 
 @Controller('product')
 export class ProductController {
@@ -34,16 +35,19 @@ export class ProductController {
     return this.productService.create(createProductDto, url.cdnUrl);
   }
 
+  @Public()
   @Get()
   findAll() {
     return this.productService.findAll();
   }
 
+  @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productService.findOne(id);
   }
 
+  @Admin()
   @Patch(':id')
   @UseInterceptors(FileInterceptor('file'))
   async update(
