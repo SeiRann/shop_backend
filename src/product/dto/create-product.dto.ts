@@ -1,7 +1,7 @@
 export class CreateProductDto {
-  image: string;
+  file: Express.Multer.File;
   description: string;
   title: string;
   stock: number;
-  sizes: string[];
+  sizes: string;
 }
