@@ -9,6 +9,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './auth/constants';
 import { AuthGuard } from './auth/auth.guard';
 import { APP_GUARD } from '@nestjs/core';
+import { UploaderModule } from './uploader/uploader.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { APP_GUARD } from '@nestjs/core';
       secret: jwtConstants.access_secret,
       signOptions: { expiresIn: '10m' },
     }),
+    UploaderModule,
   ],
   controllers: [],
   providers: [
