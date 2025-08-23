@@ -46,7 +46,7 @@ export class AuthController {
       return res.json({ message: 'User is admin' });
     }
   }
-  //TODO: make it work without public and only with guards
+
   @HttpCode(HttpStatus.OK)
   @Public()
   @Post('logout')
