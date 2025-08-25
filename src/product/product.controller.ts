@@ -42,6 +42,12 @@ export class ProductController {
   }
 
   @Public()
+  @Get(':page')
+  findMany(@Param('page') page: number) {
+    return this.productService.findMany(page);
+  }
+
+  @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productService.findOne(id);
@@ -63,6 +69,7 @@ export class ProductController {
     }
   }
 
+  @Admin()
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.productService.remove(id);

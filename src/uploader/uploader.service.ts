@@ -30,6 +30,7 @@ export class UploaderService {
 
   async upload(file: Express.Multer.File) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    console.log(file);
     const key = `${uuid()}-${file.originalname}`;
     await this.s3Client.send(
       new PutObjectCommand({

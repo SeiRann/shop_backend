@@ -3,10 +3,15 @@ import { Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { awsConstants } from 'src/auth/constants';
+import { UploaderService } from 'src/uploader/uploader.service';
 
 @Injectable()
 export class ProductService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private uploader: UploaderService,
+  ) {}
 
   async create(createProductDto: CreateProductDto, url: string) {
     // Parse sizes safely
@@ -27,6 +32,18 @@ export class ProductService {
 
   async findAll() {
     const products = await this.prisma.products.findMany();
+
+    return products;
+  }
+
+  async findMany(page: number) {
+    const productsPerPage = 20;
+    const skip = (page - 1) * productsPerPage;
+
+    const products = await this.prisma.products.findMany({
+      skip: skip,
+      take: productsPerPage,
+    });
 
     return products;
   }
@@ -74,8 +91,24 @@ export class ProductService {
   }
 
   async remove(id: string) {
-    await this.prisma.products.delete({ where: { product_id: id } });
+    const product = await this.prisma.products.findUnique({
+      where: {
+        product_id: id,
+      },
+    });
 
-    return `Product has been deleted`;
+    if (product) {
+      const imageURL = product?.image;
+      const extractedKey = imageURL?.replace(
+        `https://${awsConstants.aws_cloudfront_domainname}/`,
+        '',
+      );
+
+      await this.uploader.delete(extractedKey);
+
+      await this.prisma.products.delete({ where: { product_id: id } });
+
+      return `Product has been deleted`;
+    }
   }
 }
