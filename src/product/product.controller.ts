@@ -16,6 +16,7 @@ import { Admin } from 'src/is-admin/is-admin.decorator';
 import { UploaderService } from 'src/uploader/uploader.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Public } from 'src/public-route/public-route.decorator';
+import { awsConstants } from 'src/auth/constants';
 
 @Controller('product')
 export class ProductController {
@@ -63,6 +64,14 @@ export class ProductController {
   ) {
     if (file) {
       const url = await this.uploaderService.upload(file);
+      const oldProduct = await this.productService.findOne(id);
+      const extractedKey = oldProduct?.image.replace(
+        `https://${awsConstants.aws_cloudfront_domainname}/`,
+        '',
+      );
+      if (typeof extractedKey == 'string') {
+        await this.uploaderService.delete(extractedKey);
+      }
       return this.productService.update(id, updateProductDto, url.cdnUrl);
     } else {
       return this.productService.update(id, updateProductDto);
