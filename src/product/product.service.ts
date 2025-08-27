@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { awsConstants } from 'src/auth/constants';
 import { UploaderService } from 'src/uploader/uploader.service';
+import { validate as isUuid } from 'uuid';
 
 @Injectable()
 export class ProductService {
@@ -49,11 +50,15 @@ export class ProductService {
   }
 
   async findOne(id: string) {
-    const product = await this.prisma.products.findUnique({
-      where: { product_id: id },
-    });
+    if (isUuid(id)) {
+      const product = await this.prisma.products.findUnique({
+        where: { product_id: id },
+      });
 
-    return product;
+      return product;
+    } else {
+      throw new BadRequestException();
+    }
   }
 
   async update(id: string, updateProductDto: UpdateProductDto, url?: string) {

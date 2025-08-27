@@ -43,7 +43,7 @@ export class ProductController {
   }
 
   @Public()
-  @Get(':page')
+  @Get('page/:page')
   findMany(@Param('page') page: number) {
     return this.productService.findMany(page);
   }
