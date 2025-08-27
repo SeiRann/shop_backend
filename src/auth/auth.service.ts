@@ -21,18 +21,8 @@ export class AuthService {
     return true;
   }
 
-  signOut(req: Request, res: Response) {
-    if (req.cookies.jwtCookie) {
-      console.log(req.cookies);
-      res.clearCookie('jwtCookie', {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
-      });
-    } else {
-      console.log("doesn't have cookies");
-      throw new UnauthorizedException('Missing cookies');
-    }
+  signOut(res: Response) {
+    res.clearCookie('jwtCookie');
   }
 
   async signIn(signIn: SignInDto) {
@@ -55,12 +45,15 @@ export class AuthService {
           username: client.username,
         };
 
-        const access_token = await this.jwtService.signAsync(payload, {
+        const admin_access_token = await this.jwtService.signAsync(payload, {
           secret: jwtConstants.admin_access_secret,
         });
+
+        const access_token = await this.jwtService.signAsync(payload);
         console.log('admin logged in');
         return {
-          admin_access_token: access_token,
+          admin_access_token: admin_access_token,
+          access_token: access_token,
         };
       } else if (passwordCheck) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

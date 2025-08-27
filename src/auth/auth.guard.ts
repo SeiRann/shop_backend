@@ -42,7 +42,11 @@ export class AuthGuard implements CanActivate {
         }
       : { cookieName: 'access_token', secret: jwtConstants.access_secret };
 
+    if (!request.cookies.jwtCookie) {
+      throw new UnauthorizedException(`Cookie ${cookieName} not received`);
+    }
     const token = request.cookies.jwtCookie[cookieName];
+    console.log(token);
 
     if (!token || typeof token !== 'string') {
       throw new UnauthorizedException('Missing or invalid token');

@@ -62,7 +62,6 @@ export class ProductService {
   }
 
   async update(id: string, updateProductDto: UpdateProductDto, url?: string) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     if (updateProductDto.sizes) {
       const sizes: string[] = JSON.parse(updateProductDto.sizes);
 

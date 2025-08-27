@@ -5,7 +5,6 @@ import {
   HttpStatus,
   Post,
   Res,
-  Req,
   Get,
   Response,
 } from '@nestjs/common';
@@ -39,6 +38,12 @@ export class AuthController {
   }
 
   @HttpCode(HttpStatus.OK)
+  @Get('isloggedin')
+  checkIsLoggedIn() {
+    return true;
+  }
+
+  @HttpCode(HttpStatus.OK)
   @Admin()
   @Get('admin')
   checkAdmin(@Res({ passthrough: true }) res: express.Response) {
@@ -48,13 +53,9 @@ export class AuthController {
   }
 
   @HttpCode(HttpStatus.OK)
-  @Public()
   @Post('logout')
-  signOut(
-    @Req() request: express.Request,
-    @Res({ passthrough: true }) response: express.Response,
-  ) {
-    this.authService.signOut(request, response);
+  signOut(@Res({ passthrough: true }) response: express.Response) {
+    this.authService.signOut(response);
 
     return response.json({ message: 'Signed out successfully' });
   }
