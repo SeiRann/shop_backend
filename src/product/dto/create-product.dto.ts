@@ -4,4 +4,5 @@ export class CreateProductDto {
   title: string;
   stock: number;
   sizes: string;
+  price: number;
 }

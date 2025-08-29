@@ -23,6 +23,7 @@ export class ProductService {
         image: url,
         title: createProductDto.title,
         description: createProductDto.description,
+        price: Number(createProductDto.price),
         sizes: sizes,
         stock: Number(createProductDto.stock),
       },
