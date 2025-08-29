@@ -25,6 +25,7 @@ model Products {
   image       String
   description String
   title       String
+  price       Int
   stock       Int
   sizes       String[]
   review      Review[]
