@@ -15,7 +15,6 @@ export class ProductService {
   ) {}
 
   async create(createProductDto: CreateProductDto, url: string) {
-    // Parse sizes safely
     const sizes = JSON.parse(createProductDto.sizes);
 
     await this.prisma.products.create({

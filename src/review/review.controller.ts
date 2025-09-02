@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { ReviewService } from './review.service';
 import { CreateReviewDto } from './dto/create-review.dto';
@@ -16,8 +17,13 @@ export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {}
 
   @Post()
-  create(@Body() createReviewDto: CreateReviewDto) {
-    return this.reviewService.create(createReviewDto);
+  create(
+    @Req() req: Express.Request,
+    @Body() createReviewDto: CreateReviewDto,
+  ) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+    const author_id = req['user']['sub'];
+    return this.reviewService.create(createReviewDto, author_id);
   }
 
   @Get()
@@ -28,6 +34,11 @@ export class ReviewController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.reviewService.findOne(id);
+  }
+
+  @Get('/product/:id')
+  findManyByProduct(@Param('id') id: string) {
+    return this.reviewService.findManyByProduct(id);
   }
 
   @Patch(':id')

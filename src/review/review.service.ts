@@ -7,14 +7,14 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class ReviewService {
   constructor(private prisma: PrismaService) {}
 
-  async create(createReviewDto: CreateReviewDto) {
+  async create(createReviewDto: CreateReviewDto, author_id: string) {
     await this.prisma.review.create({
       data: {
         review_title: createReviewDto.review_title,
-        review_score: createReviewDto.review_score,
+        review_score: Number(createReviewDto.review_score),
         review_text: createReviewDto.review_text,
         product_id: createReviewDto.product_id,
-        author_id: createReviewDto.author_id,
+        author_id: author_id,
       },
     });
 
@@ -35,6 +35,14 @@ export class ReviewService {
     return review;
   }
 
+  async findManyByProduct(id: string) {
+    const review = await this.prisma.review.findMany({
+      where: { product_id: id },
+    });
+
+    return review;
+  }
+
   async update(id: string, updateReviewDto: UpdateReviewDto) {
     await this.prisma.review.update({
       where: {
@@ -42,7 +50,7 @@ export class ReviewService {
       },
       data: {
         review_title: updateReviewDto.review_title,
-        review_score: updateReviewDto.review_score,
+        review_score: Number(updateReviewDto.review_score),
         review_text: updateReviewDto.review_text,
       },
     });
