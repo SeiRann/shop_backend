@@ -11,6 +11,7 @@ import {
 import { ReviewService } from './review.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
+import { Public } from 'src/public-route/public-route.decorator';
 
 @Controller('review')
 export class ReviewController {
@@ -36,6 +37,7 @@ export class ReviewController {
     return this.reviewService.findOne(id);
   }
 
+  @Public()
   @Get('/product/:id')
   findManyByProduct(@Param('id') id: string) {
     return this.reviewService.findManyByProduct(id);
