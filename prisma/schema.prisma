@@ -14,7 +14,7 @@ model Client {
   username     String
   passwordHash String
   email        String   @unique
-  phone_number Int
+  phone_number BigInt
   address      String   @unique
   isAdmin      Boolean  @default(false)
   Review       Review[]
