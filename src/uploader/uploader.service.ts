@@ -16,8 +16,9 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 @Injectable()
 export class UploaderService {
+  
   private s3Client = new S3Client({
-    region: awsConstants.aws_region ? awsConstants.aws_region : '',
+    region: 'us-east-2',
     credentials: {
       accessKeyId: awsConstants.aws_access_key
         ? awsConstants.aws_access_key

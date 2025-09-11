@@ -17,6 +17,7 @@ model Client {
   phone_number BigInt
   address      String   @unique
   isAdmin      Boolean  @default(false)
+  Orders       Orders[]
   Review       Review[]
 }
 
@@ -40,4 +41,13 @@ model Review {
   review_title String
   author       Client   @relation(fields: [author_id], references: [client_id])
   product      Products @relation(fields: [product_id], references: [product_id])
+}
+
+model Orders {
+  order_id     String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  buyer_id     String @db.Uuid
+  order_number Int
+  address      String
+  items        String
+  buyer        Client @relation(fields: [buyer_id], references: [client_id])
 }
