@@ -12,6 +12,7 @@ import {
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { FindManyByIDDTO } from './dto/findmanybyidsdto';
 import { Admin } from 'src/is-admin/is-admin.decorator';
 import { UploaderService } from 'src/uploader/uploader.service';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -46,6 +47,12 @@ export class ProductController {
   @Get('page/:page')
   findMany(@Param('page') page: number) {
     return this.productService.findMany(page);
+  }
+
+  @Post('many')
+  findManyById(@Body() body: FindManyByIDDTO) {
+    console.log(body.ids);
+    return this.productService.findManyById(body.ids);
   }
 
   @Public()
