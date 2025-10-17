@@ -4651,7 +4651,6 @@ export namespace Prisma {
     buyer_id: string | null
     order_number: number | null
     address: string | null
-    items: string | null
   }
 
   export type OrdersMaxAggregateOutputType = {
@@ -4659,7 +4658,6 @@ export namespace Prisma {
     buyer_id: string | null
     order_number: number | null
     address: string | null
-    items: string | null
   }
 
   export type OrdersCountAggregateOutputType = {
@@ -4685,7 +4683,6 @@ export namespace Prisma {
     buyer_id?: true
     order_number?: true
     address?: true
-    items?: true
   }
 
   export type OrdersMaxAggregateInputType = {
@@ -4693,7 +4690,6 @@ export namespace Prisma {
     buyer_id?: true
     order_number?: true
     address?: true
-    items?: true
   }
 
   export type OrdersCountAggregateInputType = {
@@ -4796,7 +4792,7 @@ export namespace Prisma {
     buyer_id: string
     order_number: number
     address: string
-    items: string
+    items: string[]
     _count: OrdersCountAggregateOutputType | null
     _avg: OrdersAvgAggregateOutputType | null
     _sum: OrdersSumAggregateOutputType | null
@@ -4874,7 +4870,7 @@ export namespace Prisma {
       buyer_id: string
       order_number: number
       address: string
-      items: string
+      items: string[]
     }, ExtArgs["result"]["orders"]>
     composites: {}
   }
@@ -5303,7 +5299,7 @@ export namespace Prisma {
     readonly buyer_id: FieldRef<"Orders", 'String'>
     readonly order_number: FieldRef<"Orders", 'Int'>
     readonly address: FieldRef<"Orders", 'String'>
-    readonly items: FieldRef<"Orders", 'String'>
+    readonly items: FieldRef<"Orders", 'String[]'>
   }
     
 
@@ -6078,7 +6074,7 @@ export namespace Prisma {
     buyer_id?: UuidFilter<"Orders"> | string
     order_number?: IntFilter<"Orders"> | number
     address?: StringFilter<"Orders"> | string
-    items?: StringFilter<"Orders"> | string
+    items?: StringNullableListFilter<"Orders">
     buyer?: XOR<ClientScalarRelationFilter, ClientWhereInput>
   }
 
@@ -6099,7 +6095,7 @@ export namespace Prisma {
     buyer_id?: UuidFilter<"Orders"> | string
     order_number?: IntFilter<"Orders"> | number
     address?: StringFilter<"Orders"> | string
-    items?: StringFilter<"Orders"> | string
+    items?: StringNullableListFilter<"Orders">
     buyer?: XOR<ClientScalarRelationFilter, ClientWhereInput>
   }, "order_id">
 
@@ -6124,7 +6120,7 @@ export namespace Prisma {
     buyer_id?: UuidWithAggregatesFilter<"Orders"> | string
     order_number?: IntWithAggregatesFilter<"Orders"> | number
     address?: StringWithAggregatesFilter<"Orders"> | string
-    items?: StringWithAggregatesFilter<"Orders"> | string
+    items?: StringNullableListFilter<"Orders">
   }
 
   export type ClientCreateInput = {
@@ -6344,7 +6340,7 @@ export namespace Prisma {
     order_id?: string
     order_number: number
     address: string
-    items: string
+    items?: OrdersCreateitemsInput | string[]
     buyer: ClientCreateNestedOneWithoutOrdersInput
   }
 
@@ -6353,14 +6349,14 @@ export namespace Prisma {
     buyer_id: string
     order_number: number
     address: string
-    items: string
+    items?: OrdersCreateitemsInput | string[]
   }
 
   export type OrdersUpdateInput = {
     order_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: StringFieldUpdateOperationsInput | string
+    items?: OrdersUpdateitemsInput | string[]
     buyer?: ClientUpdateOneRequiredWithoutOrdersNestedInput
   }
 
@@ -6369,7 +6365,7 @@ export namespace Prisma {
     buyer_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: StringFieldUpdateOperationsInput | string
+    items?: OrdersUpdateitemsInput | string[]
   }
 
   export type OrdersCreateManyInput = {
@@ -6377,14 +6373,14 @@ export namespace Prisma {
     buyer_id: string
     order_number: number
     address: string
-    items: string
+    items?: OrdersCreateitemsInput | string[]
   }
 
   export type OrdersUpdateManyMutationInput = {
     order_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: StringFieldUpdateOperationsInput | string
+    items?: OrdersUpdateitemsInput | string[]
   }
 
   export type OrdersUncheckedUpdateManyInput = {
@@ -6392,7 +6388,7 @@ export namespace Prisma {
     buyer_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: StringFieldUpdateOperationsInput | string
+    items?: OrdersUpdateitemsInput | string[]
   }
 
   export type UuidFilter<$PrismaModel = never> = {
@@ -6688,7 +6684,6 @@ export namespace Prisma {
     buyer_id?: SortOrder
     order_number?: SortOrder
     address?: SortOrder
-    items?: SortOrder
   }
 
   export type OrdersMinOrderByAggregateInput = {
@@ -6696,7 +6691,6 @@ export namespace Prisma {
     buyer_id?: SortOrder
     order_number?: SortOrder
     address?: SortOrder
-    items?: SortOrder
   }
 
   export type OrdersSumOrderByAggregateInput = {
@@ -6890,10 +6884,19 @@ export namespace Prisma {
     update?: XOR<XOR<ProductsUpdateToOneWithWhereWithoutReviewInput, ProductsUpdateWithoutReviewInput>, ProductsUncheckedUpdateWithoutReviewInput>
   }
 
+  export type OrdersCreateitemsInput = {
+    set: string[]
+  }
+
   export type ClientCreateNestedOneWithoutOrdersInput = {
     create?: XOR<ClientCreateWithoutOrdersInput, ClientUncheckedCreateWithoutOrdersInput>
     connectOrCreate?: ClientCreateOrConnectWithoutOrdersInput
     connect?: ClientWhereUniqueInput
+  }
+
+  export type OrdersUpdateitemsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type ClientUpdateOneRequiredWithoutOrdersNestedInput = {
@@ -7042,14 +7045,14 @@ export namespace Prisma {
     order_id?: string
     order_number: number
     address: string
-    items: string
+    items?: OrdersCreateitemsInput | string[]
   }
 
   export type OrdersUncheckedCreateWithoutBuyerInput = {
     order_id?: string
     order_number: number
     address: string
-    items: string
+    items?: OrdersCreateitemsInput | string[]
   }
 
   export type OrdersCreateOrConnectWithoutBuyerInput = {
@@ -7112,7 +7115,7 @@ export namespace Prisma {
     buyer_id?: UuidFilter<"Orders"> | string
     order_number?: IntFilter<"Orders"> | number
     address?: StringFilter<"Orders"> | string
-    items?: StringFilter<"Orders"> | string
+    items?: StringNullableListFilter<"Orders">
   }
 
   export type ReviewUpsertWithWhereUniqueWithoutAuthorInput = {
@@ -7365,7 +7368,7 @@ export namespace Prisma {
     order_id?: string
     order_number: number
     address: string
-    items: string
+    items?: OrdersCreateitemsInput | string[]
   }
 
   export type ReviewCreateManyAuthorInput = {
@@ -7380,21 +7383,21 @@ export namespace Prisma {
     order_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: StringFieldUpdateOperationsInput | string
+    items?: OrdersUpdateitemsInput | string[]
   }
 
   export type OrdersUncheckedUpdateWithoutBuyerInput = {
     order_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: StringFieldUpdateOperationsInput | string
+    items?: OrdersUpdateitemsInput | string[]
   }
 
   export type OrdersUncheckedUpdateManyWithoutBuyerInput = {
     order_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: StringFieldUpdateOperationsInput | string
+    items?: OrdersUpdateitemsInput | string[]
   }
 
   export type ReviewUpdateWithoutAuthorInput = {
