@@ -4651,6 +4651,7 @@ export namespace Prisma {
     buyer_id: string | null
     order_number: number | null
     address: string | null
+    order_status: string | null
   }
 
   export type OrdersMaxAggregateOutputType = {
@@ -4658,6 +4659,7 @@ export namespace Prisma {
     buyer_id: string | null
     order_number: number | null
     address: string | null
+    order_status: string | null
   }
 
   export type OrdersCountAggregateOutputType = {
@@ -4666,6 +4668,7 @@ export namespace Prisma {
     order_number: number
     address: number
     items: number
+    order_status: number
     _all: number
   }
 
@@ -4683,6 +4686,7 @@ export namespace Prisma {
     buyer_id?: true
     order_number?: true
     address?: true
+    order_status?: true
   }
 
   export type OrdersMaxAggregateInputType = {
@@ -4690,6 +4694,7 @@ export namespace Prisma {
     buyer_id?: true
     order_number?: true
     address?: true
+    order_status?: true
   }
 
   export type OrdersCountAggregateInputType = {
@@ -4698,6 +4703,7 @@ export namespace Prisma {
     order_number?: true
     address?: true
     items?: true
+    order_status?: true
     _all?: true
   }
 
@@ -4792,7 +4798,8 @@ export namespace Prisma {
     buyer_id: string
     order_number: number
     address: string
-    items: string[]
+    items: JsonValue[]
+    order_status: string | null
     _count: OrdersCountAggregateOutputType | null
     _avg: OrdersAvgAggregateOutputType | null
     _sum: OrdersSumAggregateOutputType | null
@@ -4820,6 +4827,7 @@ export namespace Prisma {
     order_number?: boolean
     address?: boolean
     items?: boolean
+    order_status?: boolean
     buyer?: boolean | ClientDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["orders"]>
 
@@ -4829,6 +4837,7 @@ export namespace Prisma {
     order_number?: boolean
     address?: boolean
     items?: boolean
+    order_status?: boolean
     buyer?: boolean | ClientDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["orders"]>
 
@@ -4838,6 +4847,7 @@ export namespace Prisma {
     order_number?: boolean
     address?: boolean
     items?: boolean
+    order_status?: boolean
     buyer?: boolean | ClientDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["orders"]>
 
@@ -4847,9 +4857,10 @@ export namespace Prisma {
     order_number?: boolean
     address?: boolean
     items?: boolean
+    order_status?: boolean
   }
 
-  export type OrdersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"order_id" | "buyer_id" | "order_number" | "address" | "items", ExtArgs["result"]["orders"]>
+  export type OrdersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"order_id" | "buyer_id" | "order_number" | "address" | "items" | "order_status", ExtArgs["result"]["orders"]>
   export type OrdersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     buyer?: boolean | ClientDefaultArgs<ExtArgs>
   }
@@ -4870,7 +4881,8 @@ export namespace Prisma {
       buyer_id: string
       order_number: number
       address: string
-      items: string[]
+      items: Prisma.JsonValue[]
+      order_status: string | null
     }, ExtArgs["result"]["orders"]>
     composites: {}
   }
@@ -5299,7 +5311,8 @@ export namespace Prisma {
     readonly buyer_id: FieldRef<"Orders", 'String'>
     readonly order_number: FieldRef<"Orders", 'Int'>
     readonly address: FieldRef<"Orders", 'String'>
-    readonly items: FieldRef<"Orders", 'String[]'>
+    readonly items: FieldRef<"Orders", 'Json[]'>
+    readonly order_status: FieldRef<"Orders", 'String'>
   }
     
 
@@ -5771,7 +5784,8 @@ export namespace Prisma {
     buyer_id: 'buyer_id',
     order_number: 'order_number',
     address: 'address',
-    items: 'items'
+    items: 'items',
+    order_status: 'order_status'
   };
 
   export type OrdersScalarFieldEnum = (typeof OrdersScalarFieldEnum)[keyof typeof OrdersScalarFieldEnum]
@@ -5791,6 +5805,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -5844,6 +5866,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json[]'
+   */
+  export type ListJsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
 
 
@@ -6074,7 +6110,8 @@ export namespace Prisma {
     buyer_id?: UuidFilter<"Orders"> | string
     order_number?: IntFilter<"Orders"> | number
     address?: StringFilter<"Orders"> | string
-    items?: StringNullableListFilter<"Orders">
+    items?: JsonNullableListFilter<"Orders">
+    order_status?: StringNullableFilter<"Orders"> | string | null
     buyer?: XOR<ClientScalarRelationFilter, ClientWhereInput>
   }
 
@@ -6084,6 +6121,7 @@ export namespace Prisma {
     order_number?: SortOrder
     address?: SortOrder
     items?: SortOrder
+    order_status?: SortOrderInput | SortOrder
     buyer?: ClientOrderByWithRelationInput
   }
 
@@ -6095,7 +6133,8 @@ export namespace Prisma {
     buyer_id?: UuidFilter<"Orders"> | string
     order_number?: IntFilter<"Orders"> | number
     address?: StringFilter<"Orders"> | string
-    items?: StringNullableListFilter<"Orders">
+    items?: JsonNullableListFilter<"Orders">
+    order_status?: StringNullableFilter<"Orders"> | string | null
     buyer?: XOR<ClientScalarRelationFilter, ClientWhereInput>
   }, "order_id">
 
@@ -6105,6 +6144,7 @@ export namespace Prisma {
     order_number?: SortOrder
     address?: SortOrder
     items?: SortOrder
+    order_status?: SortOrderInput | SortOrder
     _count?: OrdersCountOrderByAggregateInput
     _avg?: OrdersAvgOrderByAggregateInput
     _max?: OrdersMaxOrderByAggregateInput
@@ -6120,7 +6160,8 @@ export namespace Prisma {
     buyer_id?: UuidWithAggregatesFilter<"Orders"> | string
     order_number?: IntWithAggregatesFilter<"Orders"> | number
     address?: StringWithAggregatesFilter<"Orders"> | string
-    items?: StringNullableListFilter<"Orders">
+    items?: JsonNullableListFilter<"Orders">
+    order_status?: StringNullableWithAggregatesFilter<"Orders"> | string | null
   }
 
   export type ClientCreateInput = {
@@ -6340,7 +6381,8 @@ export namespace Prisma {
     order_id?: string
     order_number: number
     address: string
-    items?: OrdersCreateitemsInput | string[]
+    items?: OrdersCreateitemsInput | InputJsonValue[]
+    order_status?: string | null
     buyer: ClientCreateNestedOneWithoutOrdersInput
   }
 
@@ -6349,14 +6391,16 @@ export namespace Prisma {
     buyer_id: string
     order_number: number
     address: string
-    items?: OrdersCreateitemsInput | string[]
+    items?: OrdersCreateitemsInput | InputJsonValue[]
+    order_status?: string | null
   }
 
   export type OrdersUpdateInput = {
     order_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: OrdersUpdateitemsInput | string[]
+    items?: OrdersUpdateitemsInput | InputJsonValue[]
+    order_status?: NullableStringFieldUpdateOperationsInput | string | null
     buyer?: ClientUpdateOneRequiredWithoutOrdersNestedInput
   }
 
@@ -6365,7 +6409,8 @@ export namespace Prisma {
     buyer_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: OrdersUpdateitemsInput | string[]
+    items?: OrdersUpdateitemsInput | InputJsonValue[]
+    order_status?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrdersCreateManyInput = {
@@ -6373,14 +6418,16 @@ export namespace Prisma {
     buyer_id: string
     order_number: number
     address: string
-    items?: OrdersCreateitemsInput | string[]
+    items?: OrdersCreateitemsInput | InputJsonValue[]
+    order_status?: string | null
   }
 
   export type OrdersUpdateManyMutationInput = {
     order_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: OrdersUpdateitemsInput | string[]
+    items?: OrdersUpdateitemsInput | InputJsonValue[]
+    order_status?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrdersUncheckedUpdateManyInput = {
@@ -6388,7 +6435,8 @@ export namespace Prisma {
     buyer_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: OrdersUpdateitemsInput | string[]
+    items?: OrdersUpdateitemsInput | InputJsonValue[]
+    order_status?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UuidFilter<$PrismaModel = never> = {
@@ -6666,6 +6714,40 @@ export namespace Prisma {
   export type ReviewSumOrderByAggregateInput = {
     review_score?: SortOrder
   }
+  export type JsonNullableListFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableListFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableListFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableListFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableListFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableListFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue[] | ListJsonFieldRefInput<$PrismaModel> | null
+    has?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    hasEvery?: InputJsonValue[] | ListJsonFieldRefInput<$PrismaModel>
+    hasSome?: InputJsonValue[] | ListJsonFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
 
   export type OrdersCountOrderByAggregateInput = {
     order_id?: SortOrder
@@ -6673,6 +6755,7 @@ export namespace Prisma {
     order_number?: SortOrder
     address?: SortOrder
     items?: SortOrder
+    order_status?: SortOrder
   }
 
   export type OrdersAvgOrderByAggregateInput = {
@@ -6684,6 +6767,7 @@ export namespace Prisma {
     buyer_id?: SortOrder
     order_number?: SortOrder
     address?: SortOrder
+    order_status?: SortOrder
   }
 
   export type OrdersMinOrderByAggregateInput = {
@@ -6691,10 +6775,29 @@ export namespace Prisma {
     buyer_id?: SortOrder
     order_number?: SortOrder
     address?: SortOrder
+    order_status?: SortOrder
   }
 
   export type OrdersSumOrderByAggregateInput = {
     order_number?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type OrdersCreateNestedManyWithoutBuyerInput = {
@@ -6885,7 +6988,7 @@ export namespace Prisma {
   }
 
   export type OrdersCreateitemsInput = {
-    set: string[]
+    set: InputJsonValue[]
   }
 
   export type ClientCreateNestedOneWithoutOrdersInput = {
@@ -6895,8 +6998,12 @@ export namespace Prisma {
   }
 
   export type OrdersUpdateitemsInput = {
-    set?: string[]
-    push?: string | string[]
+    set?: InputJsonValue[]
+    push?: InputJsonValue | InputJsonValue[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type ClientUpdateOneRequiredWithoutOrdersNestedInput = {
@@ -7041,18 +7148,62 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type OrdersCreateWithoutBuyerInput = {
     order_id?: string
     order_number: number
     address: string
-    items?: OrdersCreateitemsInput | string[]
+    items?: OrdersCreateitemsInput | InputJsonValue[]
+    order_status?: string | null
   }
 
   export type OrdersUncheckedCreateWithoutBuyerInput = {
     order_id?: string
     order_number: number
     address: string
-    items?: OrdersCreateitemsInput | string[]
+    items?: OrdersCreateitemsInput | InputJsonValue[]
+    order_status?: string | null
   }
 
   export type OrdersCreateOrConnectWithoutBuyerInput = {
@@ -7115,7 +7266,8 @@ export namespace Prisma {
     buyer_id?: UuidFilter<"Orders"> | string
     order_number?: IntFilter<"Orders"> | number
     address?: StringFilter<"Orders"> | string
-    items?: StringNullableListFilter<"Orders">
+    items?: JsonNullableListFilter<"Orders">
+    order_status?: StringNullableFilter<"Orders"> | string | null
   }
 
   export type ReviewUpsertWithWhereUniqueWithoutAuthorInput = {
@@ -7368,7 +7520,8 @@ export namespace Prisma {
     order_id?: string
     order_number: number
     address: string
-    items?: OrdersCreateitemsInput | string[]
+    items?: OrdersCreateitemsInput | InputJsonValue[]
+    order_status?: string | null
   }
 
   export type ReviewCreateManyAuthorInput = {
@@ -7383,21 +7536,24 @@ export namespace Prisma {
     order_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: OrdersUpdateitemsInput | string[]
+    items?: OrdersUpdateitemsInput | InputJsonValue[]
+    order_status?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrdersUncheckedUpdateWithoutBuyerInput = {
     order_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: OrdersUpdateitemsInput | string[]
+    items?: OrdersUpdateitemsInput | InputJsonValue[]
+    order_status?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrdersUncheckedUpdateManyWithoutBuyerInput = {
     order_id?: StringFieldUpdateOperationsInput | string
     order_number?: IntFieldUpdateOperationsInput | number
     address?: StringFieldUpdateOperationsInput | string
-    items?: OrdersUpdateitemsInput | string[]
+    items?: OrdersUpdateitemsInput | InputJsonValue[]
+    order_status?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ReviewUpdateWithoutAuthorInput = {

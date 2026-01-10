@@ -44,10 +44,11 @@ model Review {
 }
 
 model Orders {
-  order_id     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  buyer_id     String   @db.Uuid
+  order_id     String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  buyer_id     String  @db.Uuid
   order_number Int
   address      String
-  items        String[]
-  buyer        Client   @relation(fields: [buyer_id], references: [client_id])
+  items        Json[]
+  order_status String? @default("")
+  buyer        Client  @relation(fields: [buyer_id], references: [client_id])
 }

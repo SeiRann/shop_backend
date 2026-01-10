@@ -154,7 +154,8 @@ exports.Prisma.OrdersScalarFieldEnum = {
   buyer_id: 'buyer_id',
   order_number: 'order_number',
   address: 'address',
-  items: 'items'
+  items: 'items',
+  order_status: 'order_status'
 };
 
 exports.Prisma.SortOrder = {
@@ -165,6 +166,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 
