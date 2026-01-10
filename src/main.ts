@@ -5,6 +5,9 @@ import cookieParser from 'cookie-parser';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // REQUIRED for Railway
+  app.getHttpAdapter().getInstance().set('trust proxy', 1);
+
   const allowedOrigins = [
     'http://localhost:3000',
     'https://shop-frontend-fusc-ipqt1pdgk-seirans-projects-93be1431.vercel.app',
@@ -12,16 +15,9 @@ async function bootstrap() {
 
   app.enableCors({
     origin: (origin, callback) => {
-      // Allow server-to-server, Postman, etc.
-      if (!origin) {
-        return callback(null, true);
-      }
-
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-
-      return callback(new Error('Not allowed by CORS'));
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      return callback(null, false); // ❗ NO THROW
     },
     credentials: true,
   });
